@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cassert>
+#include <cmath>
 
 namespace parfil {
 
@@ -51,14 +52,14 @@ void Filter::GetPose(double& x, double& y, double& heading) const {
     x += m_particles[i].x();
     y += m_particles[i].y();
 
-    heading_x += cos(m_particles[i].heading());
-    heading_y += sin(m_particles[i].heading());
+    heading_x += std::cos(m_particles[i].heading());
+    heading_y += std::sin(m_particles[i].heading());
   }
 
   // Normalize using the number of particles.
   x /= m_particles.size();
   y /= m_particles.size();
-  heading = atan2(heading_y,heading_x);
+  heading = std::atan2(heading_y,heading_x);
 }
 
 // Run particle filter.

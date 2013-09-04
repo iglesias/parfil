@@ -101,8 +101,8 @@ void Robot::Move(const Motion& motion) {
 
   // Move, adding randomness to the motion.
   double distance = motion.forward_distance + m_distance_noise(RNG);
-  m_x += distance*cos(m_h);
-  m_y += distance*sin(m_h);
+  m_x += distance*std::cos(m_h);
+  m_y += distance*std::sin(m_h);
 }
 
 // Measure bearing to landmarks.
@@ -111,7 +111,7 @@ void Robot::Sense(Measurement& measurement, bool use_noise) {
 
   for (int i=0; i<NUM_LANDMARKS; ++i) {
     // Measure angle or bearing between the robot pose and each landmark.
-    double bearing = atan2(LANDMARKS[i][0]-m_y, LANDMARKS[i][1]-m_x)-m_h;
+    double bearing = std::atan2(LANDMARKS[i][0]-m_y, LANDMARKS[i][1]-m_x)-m_h;
 
     if (use_noise)
       bearing += m_bearing_noise(RNG);
