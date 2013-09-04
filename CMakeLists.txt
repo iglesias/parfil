@@ -5,7 +5,6 @@ cmake_minimum_required(VERSION 2.8)
 # Set paths.
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin CACHE PATH "Install path prefix" FORCE)
 
-
 set(SOURCES src/parfil/filter.cc src/parfil/robot.cc src/parfil/test.cc src/parfil/main.cc)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)

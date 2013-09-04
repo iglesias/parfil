@@ -41,22 +41,24 @@ Filter::~Filter() {
 
 // Extract position from particle set.
 void Filter::GetPose(double& x, double& y, double& heading) const {
+  double heading_x = 0.0;
+  double heading_y = 0.0;
+
   x = 0;
   y = 0;
-  heading = 0.0;
 
   for (unsigned int i=0; i<m_particles.size(); ++i) {
     x += m_particles[i].x();
     y += m_particles[i].y();
-    // Normalize around the first particle.
-    heading += fmod(m_particles[i].heading()-m_particles[0].heading()+M_PI, 2.0*M_PI) +
-                m_particles[0].heading() - M_PI;
+
+    heading_x += cos(m_particles[i].heading());
+    heading_y += sin(m_particles[i].heading());
   }
 
   // Normalize using the number of particles.
   x /= m_particles.size();
   y /= m_particles.size();
-  heading /= m_particles.size();
+  heading = atan2(heading_y,heading_x);
 }
 
 // Run particle filter.

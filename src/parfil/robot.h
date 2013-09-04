@@ -76,7 +76,7 @@ class Robot {
     double m_h;
 
     // Steering noise used during movement.
-	std::normal_distribution<> m_steering_noise;
+    std::normal_distribution<> m_steering_noise;
 
     // Distance noise used during movement.
     std::normal_distribution<> m_distance_noise;
