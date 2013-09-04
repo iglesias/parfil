@@ -134,9 +134,9 @@ double Robot::ComputeMeasurementProbability(const Measurement& measurement) {
   // Compute errors in the given measurement.
   double total_error = 1.0;
   for (unsigned int i=0; i<measurement.size(); ++i) {
-    double error = fabs(measurement[i]-true_measurement[i]);
+    double error = std::fabs(measurement[i]-true_measurement[i]);
     // Normalize the angle error.
-    error = fmod(error+M_PI, 2*M_PI) - M_PI;
+    error = std::fmod(error+M_PI, 2*M_PI) - M_PI; // in [-pi,pi)
 
     // Update the total error using Gaussian noise.
     total_error *= exp(-pow(error,2) / pow(m_bearing_noise.stddev(),2) / 2) /

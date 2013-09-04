@@ -10,15 +10,18 @@
 
 int main(int, char**) {
   std::srand(std::time(0));
-  int num_particles = 5000;
+  int num_particles = 25000;
   std::unique_ptr<parfil::Filter> filter(new parfil::Filter(num_particles));
 
   std::vector<parfil::Motion> motions;
   std::vector<parfil::Measurement> measurements;
   parfil::Robot robot;
-  parfil::test::Case2(motions,measurements,robot);
+  parfil::test::Case2(motions,measurements,robot,1e4);
 
+  std::time_t start = std::time(NULL);
   filter->Run(motions,measurements);
+  std::cout << "Wall time passed: " << std::difftime(std::time(NULL),start)
+            << " (s).\n";
 
   double x,y,heading;
   filter->GetPose(x,y,heading);
