@@ -9,5 +9,5 @@ set(SOURCES src/parfil/filter.cc src/parfil/robot.cc src/parfil/test.cc src/parf
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 add_executable(parfil ${SOURCES})
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -g --std=c++0x ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -g --std=c++0x -O3 ${CMAKE_CXX_FLAGS}")
 install(TARGETS parfil RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
